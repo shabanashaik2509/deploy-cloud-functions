@@ -17,18 +17,16 @@ jobs:
     
     - id: 'auth'
       name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v2'
+      uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: 'projects/45358373180/locations/global/workloadIdentityPools/mypoolid/providers/myprovider123'
-        service_account: 'git-deployer@first-footing-391206.iam.gserviceaccount.com'
+        credentials_json: ${{ secrets.GCP_SA_PASSWORD }}
+          
     # the actual deployment to google
     - name: Cloud Functions Deploy
       uses: google-github-actions/deploy-cloud-functions@v1.0.1
       with:
-        credentials: $GCP_SA_KEY
         name: myapp
         description: Test python cloud function # nullable
-        project_id: first-footing-391206
         region: us-central1
         source_dir: src
         # name of our function in our main.py file, defaults to the resource name suffix 
