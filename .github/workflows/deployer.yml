@@ -18,10 +18,10 @@ jobs:
     - name: Cloud Functions Deploy
       uses: google-github-actions/deploy-cloud-functions@v1
       with:
-        credentials: $GCP_SA_KEY
+        credentials: 7e23d74a60708c254d5e1a2c40db7e2d6baa1a66
         name: myapp
         description: Test python cloud function # nullable
-        project_id: $GCP_PROJECT_ID
+        project_id: first-footing-391206
         region: us-central1
         source_dir: src
         # name of our function in our main.py file, defaults to the resource name suffix 
