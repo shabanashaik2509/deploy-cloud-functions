@@ -25,7 +25,7 @@ jobs:
     - name: Cloud Functions Deploy
       uses: google-github-actions/deploy-cloud-functions@v1.0.1
       with:
-        name: myapp
+        name: myapp-test
         description: Test python cloud function # nullable
         region: us-central1
         source_dir: src
