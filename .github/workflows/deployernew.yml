@@ -4,7 +4,7 @@ name: Deployment
 on:
   push:
    branches:
-      - TestBranch
+      - TestBranch1
 jobs:
   run:
     # worker runs on latest ubuntu
