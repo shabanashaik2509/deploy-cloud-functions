@@ -3,7 +3,7 @@ name: Cloud SQL Deployment
 on:
  push:
    branches:
-     - TestBranch1
+     - TestBranch
 
 env:
  PROJECT_ID: first-footing-391206
