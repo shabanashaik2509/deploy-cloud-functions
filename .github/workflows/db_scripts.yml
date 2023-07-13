@@ -13,7 +13,7 @@ env:
 
 jobs:
  deploy:
-   runs-on: selfagent
+   runs-on: selfhostedagent
 
    steps:
      - name: Checkout code
