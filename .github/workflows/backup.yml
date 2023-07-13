@@ -1,0 +1,45 @@
+name: Database Backup
+
+on:
+  #schedule:
+   # - cron: '1 * * * *'
+  push:
+    branches:
+      - TestBranch
+
+permissions: write-all
+
+jobs:
+
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get install postgresql-client -y
+
+      - name: Database Backup
+        env:
+          DB_HOST: 10.117.176.5
+          DB_USER: postgres
+          DB_NAME: postgres
+          DB_PORT: 5432
+          DB_PASS: Shab@123456
+        run: |
+          TIMESTAMP=$(TZ=America/Sao_Paulo date +"%H:%M")
+          
+          c_y=$(TZ=America/Sao_Paulo date +%Y)
+          c_m=$(TZ=America/Sao_Paulo date +%m)
+          c_d=$(TZ=America/Sao_Paulo date +%d)
+          
+          folder_year_month="backups-$c_y-$c_m"
+
+          mkdir "$folder_year_month" || true
+          cd "$folder_year_month" || true
+          mkdir "$c_d" || true
+          cd "$c_d" || true
+
+          PGPASSWORD=$DB_PASS pg_dump -h $DB_HOST -U $DB_USER -d $DB_NAME -p $DB_PORT -f $TIMESTAMP.sql
