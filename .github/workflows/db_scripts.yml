@@ -33,4 +33,4 @@ jobs:
      - name: Execute SQL script
        run: |
           sudo ls -lrt
-          #psql -h 35.188.198.190 -U postgres -d postgres -p 5432 -f db_scripts/sample.sql
+          psql -h 35.188.198.190 -U postgres -d postgres -p 5432 -f db_scripts/sample.sql
