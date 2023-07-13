@@ -42,5 +42,5 @@ jobs:
      - name: Execute SQL script
        run: |
          
-          sudo ./cloud-sql-proxy first-footing-391206:us-central1:mygcpdb 
+          #sudo ./cloud-sql-proxy first-footing-391206:us-central1:mygcpdb 
           gcloud sql connect mygcpdb --user=postgres 
