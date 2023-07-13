@@ -13,7 +13,7 @@ env:
 
 jobs:
  deploy:
-   runs-on: ubuntu-latest
+   runs-on: selfagent
 
    steps:
      - name: Checkout code
@@ -32,4 +32,5 @@ jobs:
 
      - name: Execute SQL script
        run: |
-          psql -h 35.188.198.190 -U postgres -d postgres -p 5432 -f db_scripts/sample.sql
+          sudo ls -lrt
+          #psql -h 35.188.198.190 -U postgres -d postgres -p 5432 -f db_scripts/sample.sql
