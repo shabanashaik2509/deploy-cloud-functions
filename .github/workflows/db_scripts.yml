@@ -9,7 +9,7 @@ env:
  PROJECT_ID: first-footing-391206
  INSTANCE_NAME: mygcpdb
  DATABASE_NAME: postgres
- GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+ GCP_SA_KEY: ${{ secrets.GCP_TEST_NEW }}
 
 jobs:
  deploy:
@@ -22,7 +22,7 @@ jobs:
      - name: Set up gcloud
        uses: google-github-actions/setup-gcloud@v0
        with:
-         service_account_key: ${{ env.GCP_SA_KEY }}
+         service_account_key: ${{ env.GCP_TEST_NEW }}
          project_id: ${{ env.PROJECT_ID }}
 
      - name: Set up PostgreSQL client
