@@ -13,7 +13,7 @@ env:
 
 jobs:
  deploy:
-   runs-on: ubuntu-latest
+   runs-on: agent01
 
    steps:
      - name: Checkout code
