@@ -1,0 +1,38 @@
+name: Cloud SQL Deployment
+
+on:
+ push:
+   branches:
+     - TestBranch1
+
+env:
+ PROJECT_ID: your-project-id
+ INSTANCE_NAME: your-instance-name
+ DATABASE_NAME: your-database-name
+ GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
+jobs:
+ deploy:
+   runs-on: ubuntu-latest
+
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v2
+
+     - name: Set up gcloud
+       uses: google-github-actions/setup-gcloud@v0.4.3
+       with:
+         service_account_key: ${{ env.GCP_SA_KEY }}
+         project_id: ${{ env.PROJECT_ID }}
+
+     - name: Deploy Cloud SQL
+       run: |
+         gcloud sql instances create $INSTANCE_NAME --database-version=POSTGRES_13 --region=us-central1
+         gcloud sql databases create $DATABASE_NAME --instance=$INSTANCE_NAME
+
+     - name: Run database scripts
+       run: |
+         for file in db_scripts/*.sql
+         do
+           gcloud sql import sql $INSTANCE_NAME $file
+         done
