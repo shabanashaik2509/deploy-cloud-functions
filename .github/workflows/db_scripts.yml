@@ -44,4 +44,4 @@ jobs:
          
           #sudo ./cloud-sql-proxy first-footing-391206:us-central1:mygcpdb 
           #gcloud sql connect mygcpdb --user=postgres 
-          PGPASSWORD=Shab@123456 psql -U postgres --host=35.188.198.190
+          PGPASSWORD=Shab@123456 psql -U postgres --host=10.117.176.5
