@@ -7,8 +7,8 @@ on:
 
 env:
  PROJECT_ID: first-footing-391206
- INSTANCE_NAME: mygcpdb_new
- DATABASE_NAME: postgres_new
+ INSTANCE_NAME: mygcpdb
+ DATABASE_NAME: postgres
  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
 jobs:
@@ -25,14 +25,11 @@ jobs:
          service_account_key: ${{ env.GCP_SA_KEY }}
          project_id: ${{ env.PROJECT_ID }}
 
-     - name: Deploy Cloud SQL
+     - name: Set up PostgreSQL client
        run: |
-         gcloud sql instances create $INSTANCE_NAME --database-version=POSTGRES_14 --region=us-central1
-         gcloud sql databases create $DATABASE_NAME --instance=$INSTANCE_NAME
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
 
-     - name: Run database scripts
+     - name: Execute SQL script
        run: |
-         for file in db_scripts/*.sql
-         do
-           gcloud sql import sql $INSTANCE_NAME $file
-         done
+          psql -h mygcpdb -U postgres -d postgres -p 5432 -f db_scripts/sample.sql
