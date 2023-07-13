@@ -7,8 +7,8 @@ on:
 
 env:
  PROJECT_ID: first-footing-391206
- INSTANCE_NAME: mygcpdb
- DATABASE_NAME: postgres
+ INSTANCE_NAME: mygcpdb_new
+ DATABASE_NAME: postgres_new
  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
 jobs:
