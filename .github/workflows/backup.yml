@@ -20,7 +20,13 @@ jobs:
 
       - name: Install PostgreSQL client
         run: sudo apt-get install postgresql-client -y
-
+        
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.GCP_TEST_NEW }}
+          
       - name: Database Backup
         env:
           DB_HOST: 10.117.176.5
