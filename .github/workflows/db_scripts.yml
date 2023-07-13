@@ -32,4 +32,4 @@ jobs:
 
      - name: Execute SQL script
        run: |
-          psql -h mygcpdb -U postgres -d postgres -p 5432 -f db_scripts/sample.sql
+          psql -h first-footing-391206:us-central1:mygcpdb -U postgres -d postgres -p 5432 -f db_scripts/sample.sql
