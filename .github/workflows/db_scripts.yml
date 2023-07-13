@@ -41,7 +41,8 @@ jobs:
 
      - name: Execute SQL script
        run: |
-         
+          sudo pwd
+          sduo ls -lrt
           #sudo ./cloud-sql-proxy first-footing-391206:us-central1:mygcpdb 
           #gcloud sql connect mygcpdb --user=postgres 
-          PGPASSWORD=Shab@123456 psql -U postgres --host=10.117.176.5
+          PGPASSWORD=Shab@123456 psql -U postgres --host=10.117.176.5 /home/shabana_shaik079/actions-runner/_work/deploy-cloud-functions/deploy-cloud-functions/db_scripts/sample.sql
