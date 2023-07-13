@@ -24,7 +24,13 @@ jobs:
        with:
          service_account_key: ${{ env.GCP_TEST_NEW }}
          project_id: ${{ env.PROJECT_ID }}
-
+         
+     - id: 'auth'
+       name: 'Authenticate to Google Cloud'
+       uses: 'google-github-actions/auth@v1'
+       with:
+         credentials_json: ${{ secrets.GCP_TEST_NEW }}
+         
      - name: Set up PostgreSQL client
        run: |
           sudo curl -o cloud-sql-proxy https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.5.0/cloud-sql-proxy.linux.amd64
