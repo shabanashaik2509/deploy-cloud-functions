@@ -37,4 +37,4 @@ jobs:
        run: |
          
           sudo ./cloud-sql-proxy first-footing-391206:us-central1:mygcpdb 
-          psql -h 127.0.0.1 -U postgres -d postgres 
+          gcloud sql connect mygcpdb --user=postgres 
