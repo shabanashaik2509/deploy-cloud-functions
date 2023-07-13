@@ -6,9 +6,9 @@ on:
      - TestBranch1
 
 env:
- PROJECT_ID: your-project-id
- INSTANCE_NAME: your-instance-name
- DATABASE_NAME: your-database-name
+ PROJECT_ID: first-footing-391206
+ INSTANCE_NAME: mygcpdb
+ DATABASE_NAME: postgres
  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
 
      - name: Deploy Cloud SQL
        run: |
-         gcloud sql instances create $INSTANCE_NAME --database-version=POSTGRES_13 --region=us-central1
+         gcloud sql instances create $INSTANCE_NAME --database-version=POSTGRES_14 --region=us-central1
          gcloud sql databases create $DATABASE_NAME --instance=$INSTANCE_NAME
 
      - name: Run database scripts
