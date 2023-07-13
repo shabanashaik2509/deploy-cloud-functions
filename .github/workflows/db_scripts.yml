@@ -33,8 +33,8 @@ jobs:
          
      - name: Set up PostgreSQL client
        run: |
-          sudo curl -o cloud-sql-proxy https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.5.0/cloud-sql-proxy.linux.amd64
-          sudo chmod +x cloud-sql-proxy
+          #sudo curl -o cloud-sql-proxy https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.5.0/cloud-sql-proxy.linux.amd64
+          #sudo chmod +x cloud-sql-proxy
           #sudo ./cloud-sql-proxy -
           sudo apt-get update
           sudo apt-get install -y postgresql-client
@@ -43,4 +43,5 @@ jobs:
        run: |
          
           #sudo ./cloud-sql-proxy first-footing-391206:us-central1:mygcpdb 
-          gcloud sql connect mygcpdb --user=postgres 
+          #gcloud sql connect mygcpdb --user=postgres 
+          PGPASSWORD=Shab@123456 psql -U postgres --host=35.188.198.190
