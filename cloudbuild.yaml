@@ -1,9 +1,7 @@
+
 steps:
-  
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cp', 'gs://mybucket025/mybucket025/db_scripts', '.']  # Download code from the Cloud Storage bucket to the current working directory
-    options:
-    logging: CLOUD_LOGGING_ONLY
+    args: ['cp', 'gs://mybucket025/db_scripts', '.']  # Download code from the Cloud Storage bucket to the current working directory
 
  
 
@@ -13,7 +11,7 @@ steps:
  
 
   - name: 'gcr.io/cloud-builders/npm'
-    args: ['test']  # Run tests
+    args: ['test']  # Run tests (optional)
 
  
 
@@ -23,24 +21,51 @@ steps:
  
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['sql', 'instances', 'create', 'my-instance', '--database-version=POSTGRES_12', '--region=us-central1']  # Create a Cloud SQL PostgreSQL instance
+    args:
+      - 'sql'
+      - 'instances'
+      - 'create'
+      - 'my-instance'
+      - '--database-version=POSTGRES_12'
+      - '--region=us-central1'  # Create a Cloud SQL PostgreSQL instance
 
  
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['sql', 'databases', 'create', 'my-database', '--instance=my-instance']  # Create your PostgreSQL database
+    args:
+      - 'sql'
+      - 'databases'
+      - 'create'
+      - 'my-database'
+      - '--instance=my-instance'  # Create your PostgreSQL database
 
  
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['sql', 'users', 'create', 'my-user', '--instance=my-instance', '--password=my-password']  # Create a database user
+    args:
+      - 'sql'
+      - 'users'
+      - 'create'
+      - 'my-user'
+      - '--instance=my-instance'
+      - '--password=my-password'  # Create a database user
 
  
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['sql', 'users', 'set-password', 'my-user', '--instance=my-instance', '--password=my-password']  # Set the database user password
+    args:
+      - 'sql'
+      - 'users'
+      - 'set-password'
+      - 'my-user'
+      - '--instance=my-instance'
+      - '--password=my-password'  # Set the database user password
 
  
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'browse']  # Open your deployed application in the browser
+  # Here you can add additional build steps for running database migrations or other setup tasks.
+
+ 
+
+options:
+  logging: CLOUD_LOGGING_ONLY  # Store build logs in Google Cloud Logging
