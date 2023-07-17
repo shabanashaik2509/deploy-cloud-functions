@@ -1,0 +1,43 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['cp', 'gs://mybucket025/mybucket025/db_scripts', '.']  # Download code from the Cloud Storage bucket to the current working directory
+
+ 
+
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']  # Install dependencies
+
+ 
+
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['test']  # Run tests
+
+ 
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy']  # Deploy your application to Google App Engine (you might use a different deployment method)
+
+ 
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['sql', 'instances', 'create', 'my-instance', '--database-version=POSTGRES_12', '--region=us-central1']  # Create a Cloud SQL PostgreSQL instance
+
+ 
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['sql', 'databases', 'create', 'my-database', '--instance=my-instance']  # Create your PostgreSQL database
+
+ 
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['sql', 'users', 'create', 'my-user', '--instance=my-instance', '--password=my-password']  # Create a database user
+
+ 
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['sql', 'users', 'set-password', 'my-user', '--instance=my-instance', '--password=my-password']  # Set the database user password
+
+ 
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'browse']  # Open your deployed application in the browser
