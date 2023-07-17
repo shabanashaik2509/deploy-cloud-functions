@@ -1,9 +1,9 @@
 steps:
-  options:
-  logging: CLOUD_LOGGING_ONLY
   
   - name: 'gcr.io/cloud-builders/gsutil'
     args: ['cp', 'gs://mybucket025/mybucket025/db_scripts', '.']  # Download code from the Cloud Storage bucket to the current working directory
+    options:
+    logging: CLOUD_LOGGING_ONLY
 
  
 
