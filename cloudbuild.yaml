@@ -1,6 +1,6 @@
 
 steps:
-  - name: 'gcr.io/cloud-builders/gsutil'
+  - name: 'gcr.io/cloud-builders/gcloud'
     args: ['cp', '-D', 'gs://mybucket025/myfile', '.']  # Download code from the Cloud Storage bucket to the current working directory
 
  
