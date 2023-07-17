@@ -1,7 +1,7 @@
 
 steps:
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cp', 'gs://mybucket025/db_scripts', '.']  # Download code from the Cloud Storage bucket to the current working directory
+    args: ['cp', '-D' 'gs://mybucket025', '.']  # Download code from the Cloud Storage bucket to the current working directory
 
  
 
